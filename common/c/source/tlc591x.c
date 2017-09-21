@@ -23,74 +23,85 @@
 
 #include <stddef.h>
 #include <stdint.h>
+
 #include "spi.h"
 #include "tlc591x.h"
 
+/**
+ * @brief Initialize the TLC591x internals and hardware.
+ *
+ * Assumes SPI driver and pin drivers have already been initialized and are ready to use.
+ *
+ * @param[in] tlc
+ *            A pointer to the TLC591x driver to initialize.
+ * @return A boolean:
+ *         - `true`:  The driver was successfully initialized.
+ *         - `false`: The driver initialization failed.
+ */
 bool tlc591x_init( tlc591x_t * const tlc )
 {
-    bool retval = false;
+    bool success = false;
 
     if( tlc != NULL )
     {
-        /* Initialize SPI device */
-        retval = spi_init( &(tlc->spi) );
-
-        /* Initialize LE pin */
-        if( retval == true )
+        /* Ensure driver internals are valid */
+        if( (tlc->spi == NULL) || (tlc->le == NULL) || (tlc->n_oe == NULL) )
         {
-            retval = pin_set_mode( &(tlc->le), PIN_MODE_OUTPUT );
-            retval = pin_deassert( &(tlc->le) ) && retval;
-        }
+            /* Initialize LE pin */
+            pin_set_direction( tlc->le, PIN_DIRECTION_OUTPUT );
+            pin_deassert( tlc->le );
 
-        /* Initialize nOE pin */
-        if( retval == true )
-        {
-            retval = pin_set_mode( &(tlc->oe_), PIN_MODE_OUTPUT );
-            retval = pin_deassert( &(tlc->oe_) ) && retval;
+            /* Initialize nOE pin */
+            pin_set_direction( tlc->n_oe, PIN_DIRECTION_OUTPUT );
+            pin_deassert( tlc->n_oe );
+
+            success = true;
         }
     }
 
-    return retval;
+    return success;
 }
 
 bool tlc591x_enable_output( tlc591x_t * const tlc )
 {
-    bool retval = false;
+    bool success = false;
 
     if( tlc != NULL )
     {
-        retval = pin_assert( &(tlc->oe_) );
+        pin_assert( tlc->n_oe );
+        success = true;
     }
 
-    return retval;
+    return success;
 }
 
 bool tlc591x_disable_output( tlc591x_t * const tlc )
 {
-    bool retval = false;
+    bool success = false;
 
     if( tlc != NULL )
     {
-        retval = pin_deassert( &(tlc->oe_) );
+        pin_deassert( tlc->n_oe );
+        success = true;
     }
 
-    return retval;
+    return success;
 }
 
 bool tlc591x_write_values( tlc591x_t * const tlc, const uint8_t values )
 {
-    bool retval = false;
+    bool success = false;
 
     if( tlc != NULL )
     {
-        retval = spi_write( &(tlc->spi), values );
+        success = spi_write( tlc->spi, &values, 1 );
 
-        if( retval == true )
+        if( success == true )
         {
-            retval = pin_assert( &(tlc->le) );
-            retval = pin_deassert( &(tlc->le) ) && retval;
+            pin_assert( tlc->le );
+            pin_deassert( tlc->le );
         }
     }
 
-    return retval;
+    return success;
 }

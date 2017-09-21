@@ -1,28 +1,13 @@
 /**
- * @file   timer.h
- * @brief  This file contains the timer driver declarations.
+ * @file   timer_attinyx5.h
+ * @brief  This file contains the common timer driver declarations for the AVR ATtinyx5 series.
  * @author Liam Bucci <liam.bucci@gmail.com>
  * @date   2015-09-13
- * @copyright
- * {
- *     Copyright 2015 Liam Bucci
- *
- *     Licensed under the Apache License, Version 2.0 (the "License");
- *     you may not use this file except in compliance with the License.
- *     You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *     Unless required by applicable law or agreed to in writing, software
- *     distributed under the License is distributed on an "AS IS" BASIS,
- *     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *     See the License for the specific language governing permissions and
- *     limitations under the License.
- * }
+ * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef TIMER_H
-#define TIMER_H
+#ifndef TIMER_ATTINYx5_H
+#define TIMER_ATTINYx5_H
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -68,12 +53,8 @@ typedef struct timer_s
 bool timer_init( const timer_t * const ptimer );
 bool timer_enable_int( const timer_t * const ptimer );
 bool timer_disable_int( const timer_t * const ptimer );
-bool timer_start( const timer_t * const ptimer );
-bool timer_pause( const timer_t * const ptimer );
-bool timer_reset( const timer_t * const ptimer );
 bool timer_set_compare( const timer_t * const ptimer, const uint8_t value );
 bool timer_get_compare( const timer_t * const ptimer, uint8_t * const pvalue );
-bool timer_set_timer( const timer_t * const ptimer, const uint8_t value );
-bool timer_get_timer( const timer_t * const ptimer, uint8_t * const pvalue );
 
-#endif /* TIMER_H */
+
+#endif /* TIMER_ATTINYx5_H */

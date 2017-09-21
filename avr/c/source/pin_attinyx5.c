@@ -1,84 +1,19 @@
 /**
- * @file   pin_avr.c
- * @brief  This file contains AVR pin function definitions.
+ * @file   pin_attinyx5.c
+ * @brief  This file contains pin driver definition for the ATtinyx5 series.
  * @author Liam Bucci <liam.bucci@gmail.com>
  * @date   2015-08-29
- * @copyright
- * {
- *     Copyright 2015 Liam Bucci
- *
- *     Licensed under the Apache License, Version 2.0 (the "License");
- *     you may not use this file except in compliance with the License.
- *     You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- *     Unless required by applicable law or agreed to in writing, software
- *     distributed under the License is distributed on an "AS IS" BASIS,
- *     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *     See the License for the specific language governing permissions and
- *     limitations under the License.
- * }
+ * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
 #include <stdbool.h>
 #include <stddef.h>
 #include <avr/io.h>
-#include "pin.h"
+
+#include "embedlib/pin_attinyx5.h"
 
 
 /* API Function Definitions ==================================================================== */
-
-/**
- * @brief Set the pin mode.
- */
-bool pin_set_mode( const pin_t * const pin, const pin_mode_t mode )
-{
-    bool retval = false;
-
-    if( pin != NULL )
-    {
-        switch( pin->bank )
-        {
-        case PIN_BANK_A:
-            break;
-
-        case PIN_BANK_B:
-            if( mode == PIN_MODE_INPUT )
-            {
-                DDRB &= ~(1<<(pin->num));
-                retval = true;
-            }
-            else if( mode == PIN_MODE_OUTPUT )
-            {
-                DDRB |= (1<<(pin->num));
-                retval = true;
-            }
-            else if( mode == PIN_MODE_ALTERNATE )
-            {
-                /* Nothing to do */
-                retval = true;
-            }
-            else
-            {
-                /* Unknown mode, default to an error */
-            }
-
-            break;
-
-        case PIN_BANK_C: /* Intentional fall-through */
-        case PIN_BANK_D: /* Intentional fall-through */
-        case PIN_BANK_E: /* Intentional fall-through */
-        case PIN_BANK_F: /* Intentional fall-through */
-        case PIN_BANK_G: /* Intentional fall-through */
-        case PIN_BANK_H: /* Intentional fall-through */
-        default:
-            break;
-        }
-    }
-
-    return retval;
-}
 
 /**
  * @brief Set the pin's pull up or pull down setting.
@@ -127,14 +62,60 @@ bool pin_set_pupd( const pin_t * const pin, const pin_pupd_t pupd )
 }
 
 /**
+ * @brief Set the direction of the pin (input/output).
+ *
+ * @param[in]  pin
+ *             The pin to modify.
+ * @param[in]  dir
+ *             The direction to set.
+ */
+void pin_set_direction( const pin_t * const pin, const pin_direction_t dir )
+{
+    if( pin != NULL )
+    {
+        switch( pin->bank )
+        {
+        case PIN_BANK_A:
+            break;
+
+        case PIN_BANK_B:
+            if( mode == PIN_DIRECTION_INPUT )
+            {
+                DDRB &= ~(1<<(pin->num));
+                retval = true;
+            }
+            else if( mode == PIN_DIRECTION_OUTPUT )
+            {
+                DDRB |= (1<<(pin->num));
+                retval = true;
+            }
+            else
+            {
+                /* Unknown mode, do nothing */
+            }
+
+            break;
+
+        case PIN_BANK_C: /* Intentional fall-through */
+        case PIN_BANK_D: /* Intentional fall-through */
+        case PIN_BANK_E: /* Intentional fall-through */
+        case PIN_BANK_F: /* Intentional fall-through */
+        case PIN_BANK_G: /* Intentional fall-through */
+        case PIN_BANK_H: /* Intentional fall-through */
+        default:
+            break;
+        }
+    }
+}
+
+/**
  * @brief Read the value at the pin (whether input or output).
  */
-bool pin_read( const pin_t * const pin, bool * const is_asserted )
+bool pin_read( const pin_t * const pin )
 {
-    bool retval = false;
+    bool is_asserted = false;
 
-    if( (pin != NULL) &&
-        (is_asserted != NULL) )
+    if( pin != NULL )
     {
         switch( pin->bank )
         {
@@ -158,16 +139,14 @@ bool pin_read( const pin_t * const pin, bool * const is_asserted )
         }
     }
 
-    return retval;
+    return is_asserted;
 }
 
 /**
  * @brief Assert the pin (output only).
  */
-bool pin_assert( const pin_t * const pin )
+void pin_assert( const pin_t * const pin )
 {
-    bool retval = false;
-
     if( pin != NULL )
     {
         switch( pin->bank )
@@ -177,7 +156,6 @@ bool pin_assert( const pin_t * const pin )
 
         case PIN_BANK_B:
             PORTB = pin->is_asserted_low ? (PORTB & ~(1<<(pin->num))) : (PORTB | (1<<(pin->num)));
-            retval = true;
 
             break;
 
@@ -191,17 +169,13 @@ bool pin_assert( const pin_t * const pin )
             break;
         }
     }
-
-    return retval;
 }
 
 /**
  * @brief Deassert the pin (output only).
  */
-bool pin_deassert( const pin_t * const pin )
+void pin_deassert( const pin_t * const pin )
 {
-    bool retval = false;
-
     if( pin != NULL )
     {
         switch( pin->bank )
@@ -211,7 +185,6 @@ bool pin_deassert( const pin_t * const pin )
 
         case PIN_BANK_B:
             PORTB = pin->is_asserted_low ? (PORTB | (1<<(pin->num))) : (PORTB & ~(1<<(pin->num)));
-            retval = true;
 
             break;
 
@@ -225,17 +198,13 @@ bool pin_deassert( const pin_t * const pin )
             break;
         }
     }
-
-    return retval;
 }
 
 /**
  * @brief Toggle the value of the pin (output only).
  */
-bool pin_toggle( const pin_t * const pin )
+void pin_toggle( const pin_t * const pin )
 {
-    bool retval = false;
-
     if( pin != NULL )
     {
         switch( pin->bank )
@@ -245,7 +214,6 @@ bool pin_toggle( const pin_t * const pin )
 
         case PIN_BANK_B:
             PINB |= (1<<(pin->num));
-            retval = true;
 
             break;
 
@@ -259,6 +227,4 @@ bool pin_toggle( const pin_t * const pin )
             break;
         }
     }
-
-    return retval;
 }

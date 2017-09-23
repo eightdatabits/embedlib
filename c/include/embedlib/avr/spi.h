@@ -29,4 +29,13 @@ bool spi_read( spi_t * const spi,
                uint8_t * const read_bytes,
                const uint8_t num_bytes );
 
+/* Include processor specific header */
+#if defined (__AVR_ATtiny25__)
+#include "embedlib/avr/attiny/spi_attinyx5.h"
+#elif defined (__AVR_ATtiny45__)
+#include "embedlib/avr/attiny/spi_attinyx5.h"
+#elif defined (__AVR_ATtiny85__)
+#include "embedlib/avr/attiny/spi_attinyx5.h"
+#endif
+
 #endif /* SPI_H */

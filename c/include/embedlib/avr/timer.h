@@ -21,4 +21,13 @@ bool timer_reset( const timer_t * const timer );
 bool timer_set( const timer_t * const timer, const uint8_t value );
 bool timer_get( const timer_t * const timer, uint8_t * const value );
 
+/* Include processor specific header */
+#if defined (__AVR_ATtiny25__)
+#include "embedlib/avr/attiny/timer_attinyx5.h"
+#elif defined (__AVR_ATtiny45__)
+#include "embedlib/avr/attiny/timer_attinyx5.h"
+#elif defined (__AVR_ATtiny85__)
+#include "embedlib/avr/attiny/timer_attinyx5.h"
+#endif
+
 #endif /* TIMER_H */

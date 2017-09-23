@@ -27,4 +27,13 @@ void pin_assert( const pin_t * const pin );
 void pin_deassert( const pin_t * const pin );
 void pin_toggle( const pin_t * const pin );
 
+/* Include processor specific header */
+#if defined (__AVR_ATtiny25__)
+#include "embedlib/avr/attiny/pin_attinyx5.h"
+#elif defined (__AVR_ATtiny45__)
+#include "embedlib/avr/attiny/pin_attinyx5.h"
+#elif defined (__AVR_ATtiny85__)
+#include "embedlib/avr/attiny/pin_attinyx5.h"
+#endif
+
 #endif /* PIN_H */

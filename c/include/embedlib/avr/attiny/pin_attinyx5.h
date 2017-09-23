@@ -9,6 +9,10 @@
 #ifndef PIN_ATTINYx5_H
 #define PIN_ATTINYx5_H
 
+#ifndef PIN_H
+#error "Include pin.h instead of this file."
+#endif
+
 #include <stdbool.h>
 
 typedef enum pin_bank_e

@@ -9,6 +9,10 @@
 #ifndef SPI_ATTINYx5_H
 #define SPI_ATTINYx5_H
 
+#ifndef SPI_H
+#error "Include spi.h instead of this file."
+#endif
+
 #include <stdbool.h>
 
 #include "embedlib/common/spi.h"

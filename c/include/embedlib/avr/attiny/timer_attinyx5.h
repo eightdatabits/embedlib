@@ -9,6 +9,10 @@
 #ifndef TIMER_ATTINYx5_H
 #define TIMER_ATTINYx5_H
 
+#ifndef TIMER_H
+#error "Include timer.h instead of this file."
+#endif
+
 #include <stdbool.h>
 #include <stdint.h>
 

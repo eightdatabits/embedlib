@@ -10,7 +10,7 @@
 #include <stddef.h>
 #include <avr/io.h>
 
-#include "embedlib/pin_attinyx5.h"
+#include "embedlib/common/pin.h"
 
 
 /* API Function Definitions ==================================================================== */
@@ -79,19 +79,17 @@ void pin_set_direction( const pin_t * const pin, const pin_direction_t dir )
             break;
 
         case PIN_BANK_B:
-            if( mode == PIN_DIRECTION_INPUT )
+            if( dir == PIN_DIRECTION_IN )
             {
                 DDRB &= ~(1<<(pin->num));
-                retval = true;
             }
-            else if( mode == PIN_DIRECTION_OUTPUT )
+            else if( dir == PIN_DIRECTION_OUT )
             {
                 DDRB |= (1<<(pin->num));
-                retval = true;
             }
             else
             {
-                /* Unknown mode, do nothing */
+                /* Unknown direction, do nothing */
             }
 
             break;
@@ -123,8 +121,7 @@ bool pin_read( const pin_t * const pin )
             break;
 
         case PIN_BANK_B:
-            *is_asserted = (PINB & (1<<(pin->num)));
-            retval = true;
+            is_asserted = (PINB & (1<<(pin->num)));
 
             break;
 

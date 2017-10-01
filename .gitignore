@@ -21,3 +21,9 @@
 *.i*86
 *.x86_64
 *.hex
+
+# Build files and folders
+**/build
+
+# Output files and folders
+**/output

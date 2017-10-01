@@ -29,11 +29,11 @@ void pin_toggle( const pin_t * const pin );
 
 /* Include processor specific header */
 #if defined (__AVR_ATtiny25__)
-#include "embedlib/avr/attiny/pin_attinyx5.h"
+#include "embedlib/attinyx5/pin.h"
 #elif defined (__AVR_ATtiny45__)
-#include "embedlib/avr/attiny/pin_attinyx5.h"
+#include "embedlib/attinyx5/pin.h"
 #elif defined (__AVR_ATtiny85__)
-#include "embedlib/avr/attiny/pin_attinyx5.h"
+#include "embedlib/attinyx5/pin.h"
 #endif
 
 #endif /* PIN_H */

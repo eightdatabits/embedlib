@@ -30,7 +30,7 @@ AVR_LINKER_DIR = linker
 AVR_TESTS_DIR = tests
 AVR_MOCKS_DIR = mocks
 AVR_STUBS_DIR = stubs
-THIRDPARTY_DIR = ../../thirdparty
+THIRDPARTY_DIR = ../thirdparty
 
 # Build Flags #
 AVR_LIB_CFLAGS = -Wall -Werror -ggdb

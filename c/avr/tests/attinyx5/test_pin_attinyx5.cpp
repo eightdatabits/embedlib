@@ -10,17 +10,13 @@
 
 #include "unity.h"
 
-#include "embedlib/common/pin.h"
+#include "embedlib/attinyx5/pin.h"
 
-void test_first(void)
-{
-    TEST_FAIL();
-}
+using namespace emb;
 
 int main(int argc, char** argv)
 {
     UNITY_BEGIN();
-    RUN_TEST(test_first);
 
     return UNITY_END();
 }

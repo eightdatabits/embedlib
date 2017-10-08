@@ -6,36 +6,27 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef SPI_H
-#define SPI_H
+#ifndef EMB_SPI_H
+#define EMB_SPI_H
 
 #include <stdbool.h>
 #include <stdint.h>
 
-/* Forward declaration of SPI driver struct */
-struct spi_s;
-typedef struct spi_s spi_t;
+namespace emb {
 
-bool spi_enable_cs( spi_t * const spi );
-bool spi_disable_cs( spi_t * const spi );
-bool spi_write_read( spi_t * const spi,
-                     uint8_t * const read_bytes,
-                     const uint8_t * const write_bytes,
-                     const uint8_t num_bytes );
-bool spi_write( spi_t * const spi,
-                const uint8_t * const write_bytes,
-                const uint8_t num_bytes );
-bool spi_read( spi_t * const spi,
-               uint8_t * const read_bytes,
-               const uint8_t num_bytes );
+class ISpi {
+public:
+    virtual bool enableCs() = 0;
+    virtual bool disableCs() = 0;
+    virtual size_t writeRead( uint8_t * const read_bytes,
+                              const uint8_t * const write_bytes,
+                              const size_t num_bytes ) = 0;
+    virtual size_t write( const uint8_t * const write_bytes,
+                          const size_t num_bytes ) = 0;
+    virtual size_t read( uint8_t * const read_bytes,
+                         const size_t num_bytes ) = 0;
+};
 
-/* Include processor specific header */
-#if defined (__AVR_ATtiny25__)
-#include "embedlib/avr/attiny/spi_attinyx5.h"
-#elif defined (__AVR_ATtiny45__)
-#include "embedlib/avr/attiny/spi_attinyx5.h"
-#elif defined (__AVR_ATtiny85__)
-#include "embedlib/avr/attiny/spi_attinyx5.h"
-#endif
+} // namespace emb
 
-#endif /* SPI_H */
+#endif /* EMB_SPI_H */

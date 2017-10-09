@@ -81,7 +81,8 @@ include make/library.mk
 LIB_ATTINY85_TARGET := attiny85
 LIB_ATTINY85_FAMILY := attinyx5
 LIB_ATTINY85_SOURCES := $(AVR_SOURCE_DIR)/attinyx5/pin.cpp \
-                        $(AVR_SOURCE_DIR)/attinyx5/spi.cpp
+                        $(AVR_SOURCE_DIR)/attinyx5/spi.cpp \
+                        $(AVR_SOURCE_DIR)/attinyx5/timer1.cpp
 LIB_ATTINY85_INCLUDES := $(AVR_INCLUDE_DIR)
 LIB_ATTINY85_CFLAGS := -mmcu=attiny85 -Wall -Werror -Os
 LIB_ATTINY85_CPPFLAGS := -mmcu=attiny85 -Wall -Werror -Os

@@ -11,7 +11,7 @@
 
 #include <stdbool.h>
 
-#include "embedlib/common/pin.h"
+#include "embedlib/common/ipin.h"
 
 namespace emb {
 

@@ -12,7 +12,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "embedlib/common/spi.h"
+#include "embedlib/common/ispi.h"
 #include "embedlib/attinyx5/pin.h"
 
 namespace emb {

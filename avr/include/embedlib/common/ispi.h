@@ -1,13 +1,13 @@
 /**
- * @file      spi.h
+ * @file      ispi.h
  * @brief     This file contains the common SPI driver declaration.
  * @author    Liam Bucci <liam.bucci@gmail.com>
  * @date      2015-08-29
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_SPI_H
-#define EMB_SPI_H
+#ifndef EMB_ISPI_H
+#define EMB_ISPI_H
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -29,4 +29,4 @@ public:
 
 } // namespace emb
 
-#endif /* EMB_SPI_H */
+#endif /* EMB_ISPI_H */

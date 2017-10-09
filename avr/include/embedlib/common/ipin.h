@@ -1,15 +1,17 @@
 /**
- * @file      pin.h
+ * @file      ipin.h
  * @brief     This file contains the common pin driver declaration.
  * @author    Liam Bucci <liam.bucci@gmail.com>
  * @date      2015-08-29
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_PIN_H
-#define EMB_PIN_H
+#ifndef EMB_IPIN_H
+#define EMB_IPIN_H
 
 #include <stdbool.h>
+
+namespace emb {
 
 class IPin {
 public:
@@ -26,4 +28,6 @@ public:
     virtual void toggle() = 0;
 };
 
-#endif /* EMB_PIN_H */
+} // namespace emb
+
+#endif /* EMB_IPIN_H */

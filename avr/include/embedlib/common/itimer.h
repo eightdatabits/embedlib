@@ -6,8 +6,8 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_TIMER_H
-#define EMB_TIMER_H
+#ifndef EMB_ITIMER_H
+#define EMB_ITIMER_H
 
 #include <stdbool.h>
 
@@ -22,4 +22,4 @@ public:
 
 } // namespace emb
 
-#endif /* EMB_TIMER_H */
+#endif /* EMB_ITIMER_H */

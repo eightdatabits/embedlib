@@ -49,10 +49,10 @@ public:
 
     void dealloc(void* mem) {
         const ptrdiff_t bucket_diff = static_cast<uint8_t*>(mem) - (&m_buckets[0].mem[0]);
-        const size_t bucket_index = bucket_diff / kBucketSpacing;
+        const size_t bucket_index = bucket_diff / sizeof(Bucket);
 
         // Check that the given memory is actually a bucket
-        if ((bucket_diff % kBucketSpacing) == 0) {
+        if ((bucket_diff % sizeof(Bucket)) == 0) {
             const size_t bin = (bucket_index / kBucketsPerBin);
             const size_t offset = (bucket_index % kBucketsPerBin);
 
@@ -84,7 +84,7 @@ private:
         uint8_t mem[BucketSizeBytes];
     };
 
-    typedef uint32_t BucketBin;
+    typedef size_t BucketBin;
 
     static constexpr size_t kBucketsPerBin = sizeof(BucketBin) * CHAR_BIT;
     static constexpr size_t kNumBucketBins = (NumBuckets + kBucketsPerBin - 1) / kBucketsPerBin;
@@ -93,8 +93,6 @@ private:
     size_t m_remaining = NumBuckets;
     uint32_t m_bucket_bins[kNumBucketBins] = {};
     Bucket m_buckets[NumBuckets] = {};
-
-    const size_t kBucketSpacing = (&m_buckets[1].mem[0]) - (&m_buckets[0].mem[0]);
 };
 
 /*

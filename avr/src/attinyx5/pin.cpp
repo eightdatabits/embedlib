@@ -10,7 +10,7 @@
 #include <stddef.h>
 #include <avr/io.h>
 
-#include "embedlib/common/assert.h"
+#include "embedlib/common/emb_assert.h"
 #include "embedlib/attinyx5/pin.h"
 
 namespace emb {

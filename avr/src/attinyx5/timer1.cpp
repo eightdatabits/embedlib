@@ -12,7 +12,7 @@
 
 #include <avr/io.h>
 
-#include "embedlib/attinyx5/Timer1.h"
+#include "embedlib/attinyx5/timer1.h"
 
 namespace emb {
 

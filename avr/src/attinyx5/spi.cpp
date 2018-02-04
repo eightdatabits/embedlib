@@ -11,9 +11,9 @@
 #include <stdint.h>
 #include <avr/io.h>
 
-#include "embedlib/attinyx5/spi.h"
+#include "junk/attinyx5/spi.h"
 
-namespace emb {
+namespace junk {
 
 /* API Function Definitions ==================================================================== */
 
@@ -137,4 +137,4 @@ size_t Spi::read( uint8_t * const read_bytes, const size_t num_bytes )
     return writeRead( read_bytes, NULL, num_bytes );
 }
 
-} // namespace emb
+} // namespace junk

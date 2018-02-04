@@ -11,7 +11,7 @@
 
 #include <cstdint>
 
-namespace emb {
+namespace junk {
 
 /**
  * @brief Interface definition for all allocator derived classes.
@@ -66,6 +66,6 @@ public:
     virtual size_t reserved() const = 0;
 };
 
-} // namespace emb
+} // namespace junk
 
 #endif // IALLOCATOR_H

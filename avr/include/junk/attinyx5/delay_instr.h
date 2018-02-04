@@ -6,8 +6,8 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_DELAY_INSTR_H
-#define EMB_DELAY_INSTR_H
+#ifndef JUNK_DELAY_INSTR_H
+#define JUNK_DELAY_INSTR_H
 
 #include <stdint.h>
 
@@ -21,4 +21,4 @@ extern void emb_delay_instr(uint16_t i);
 }
 #endif
 
-#endif // EMB_DELAY_INSTR_H
+#endif // JUNK_DELAY_INSTR_H

@@ -10,10 +10,10 @@
 #include <stddef.h>
 #include <avr/io.h>
 
-#include "embedlib/common/assert.h"
-#include "embedlib/attinyx5/bb_uart.h"
+#include "junk/common/assert.h"
+#include "junk/attinyx5/bb_uart.h"
 
-namespace emb {
+namespace junk {
 
 /* API Function Definitions ==================================================================== */
 
@@ -36,4 +36,4 @@ bool BitBangUart::putChar( const char c )
 }
 
 
-} // namespace emb
+} // namespace junk

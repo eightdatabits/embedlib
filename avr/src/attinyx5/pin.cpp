@@ -10,10 +10,10 @@
 #include <stddef.h>
 #include <avr/io.h>
 
-#include "embedlib/common/emb_assert.h"
-#include "embedlib/attinyx5/pin.h"
+#include "junk/common/emb_assert.h"
+#include "junk/attinyx5/pin.h"
 
-namespace emb {
+namespace junk {
 
 /* API Function Definitions ==================================================================== */
 
@@ -31,7 +31,7 @@ namespace emb {
 Pin::Pin( const PinNum num, const bool asserted_high )
     : m_num(num), m_asserted_high(asserted_high)
 {
-    EMB_ASSERT(m_num < 8);
+    JUNK_ASSERT(m_num < 8);
 }
 
 /**
@@ -114,4 +114,4 @@ void Pin::toggle()
     PINB |= (1<<(m_num));
 }
 
-} // namespace emb
+} // namespace junk

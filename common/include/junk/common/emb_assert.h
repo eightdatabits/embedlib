@@ -6,26 +6,26 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_ASSERT_H
-#define EMB_ASSERT_H
+#ifndef JUNK_ASSERT_H
+#define JUNK_ASSERT_H
 
 #include <stddef.h>
 
-#ifndef EMB_TRAP
-#define EMB_TRAP(f,l) while(1)
+#ifndef JUNK_TRAP
+#define JUNK_TRAP(f,l) while(1)
 #endif
 
-#ifndef EMB_ASSERT
-#define EMB_ASSERT(c)                    \
+#ifndef JUNK_ASSERT
+#define JUNK_ASSERT(c)                    \
     do {                                 \
         if (!(c)) {                      \
-            EMB_TRAP(__FILE__,__LINE__); \
+            JUNK_TRAP(__FILE__,__LINE__); \
         }                                \
     } while(0)
 #endif
 
-#ifndef EMB_ASSERT_RETURN
-#define EMB_ASSERT_RETURN(c,r)           \
+#ifndef JUNK_ASSERT_RETURN
+#define JUNK_ASSERT_RETURN(c,r)           \
     do {                                 \
         if (!(c)) {                      \
             return (r);                  \
@@ -33,8 +33,8 @@
     } while(0)
 #endif
 
-#ifndef EMB_ASSERT_RETURNVOID
-#define EMB_ASSERT_RETURNVOID(c)         \
+#ifndef JUNK_ASSERT_RETURNVOID
+#define JUNK_ASSERT_RETURNVOID(c)         \
     do {                                 \
         if (!(c)) {                      \
             return;                      \
@@ -42,4 +42,4 @@
     } while(0)
 #endif
 
-#endif /* EMB_ASSERT_H */
+#endif /* JUNK_ASSERT_H */

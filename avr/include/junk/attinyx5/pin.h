@@ -6,14 +6,14 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_ATTINYx5_PIN_H
-#define EMB_ATTINYx5_PIN_H
+#ifndef JUNK_ATTINYx5_PIN_H
+#define JUNK_ATTINYx5_PIN_H
 
 #include <stdbool.h>
 
-#include "embedlib/common/ipin.h"
+#include "junk/common/ipin.h"
 
-namespace emb {
+namespace junk {
 
 class Pin : public IPin {
 public:
@@ -42,6 +42,6 @@ private:
     bool m_asserted_high;
 };
 
-} // namespace emb
+} // namespace junk
 
-#endif /* EMB_ATTINYx5_PIN_H */
+#endif /* JUNK_ATTINYx5_PIN_H */

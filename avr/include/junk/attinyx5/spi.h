@@ -6,16 +6,16 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_SPI_ATTINYx5_H
-#define EMB_SPI_ATTINYx5_H
+#ifndef JUNK_SPI_ATTINYx5_H
+#define JUNK_SPI_ATTINYx5_H
 
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "embedlib/common/ispi.h"
-#include "embedlib/attinyx5/pin.h"
+#include "junk/common/ispi.h"
+#include "junk/attinyx5/pin.h"
 
-namespace emb {
+namespace junk {
 
 class Spi : public ISpi {
 public:
@@ -60,6 +60,6 @@ private:
     Pin& m_sclk;
 };
 
-} // namespace emb
+} // namespace junk
 
-#endif /* EMB_SPI_ATTINYx5_H */
+#endif /* JUNK_SPI_ATTINYx5_H */

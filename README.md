@@ -1,4 +1,6 @@
-embedlib
-========
+Junk
+====
 
-A general purpose embedded library containing code for both AVR and PIC architectures and implementations of both hardware and software abstractions.
+A library containing a random assortment of useful embedded code. This includes a HAL with drivers
+for AVR and STM32 parts as well as general use code such as memory, math, and container objects and
+functions.

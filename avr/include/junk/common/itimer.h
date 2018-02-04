@@ -6,12 +6,12 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_ITIMER_H
-#define EMB_ITIMER_H
+#ifndef JUNK_ITIMER_H
+#define JUNK_ITIMER_H
 
 #include <stdbool.h>
 
-namespace emb {
+namespace junk {
 
 class ITimer {
 public:
@@ -20,6 +20,6 @@ public:
     virtual bool reset() = 0;
 };
 
-} // namespace emb
+} // namespace junk
 
-#endif /* EMB_ITIMER_H */
+#endif /* JUNK_ITIMER_H */

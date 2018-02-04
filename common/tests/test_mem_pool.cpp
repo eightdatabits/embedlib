@@ -8,9 +8,9 @@
 
 #include "unity.h"
 
-#include "embedlib/common/mem_pool.h"
+#include "junk/common/mem_pool.h"
 
-using namespace emb;
+using namespace junk;
 
 void test_allocate_success();
 void test_deallocate_success();

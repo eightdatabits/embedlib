@@ -12,9 +12,9 @@
 #include <stdint.h>
 #include <queue>
 
-#include "embedlib/common/iallocator.h"
+#include "junk/common/iallocator.h"
 
-namespace emb {
+namespace junk {
 
 /**
  * @brief A memory pool that statically allocates its memory internally.
@@ -132,6 +132,6 @@ private:
     Bucket m_buckets[NumBuckets] {};
 };
 
-} // namespace emb
+} // namespace junk
 
 #endif // MEM_POOL_H

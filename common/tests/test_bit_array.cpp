@@ -8,13 +8,13 @@
 
 #include "unity.h"
 
-// Mock EMB_TRAP
-#define EMB_TRAP(f,l) g_emb_assert_trap = true
-bool g_emb_assert_trap = false;
+// Mock JUNK_TRAP
+#define JUNK_TRAP(f,l) g_junk_assert_trap = true
+bool g_junk_assert_trap = false;
 
-#include "embedlib/common/bit_array.h"
+#include "junk/common/bit_array.h"
 
-using namespace emb;
+using namespace junk;
 
 void test_default_constructor();
 void test_init_constructor();
@@ -108,8 +108,8 @@ void test_at()
     }
 
     (void)uut.at(1000);
-    TEST_ASSERT(g_emb_assert_trap == true);
-    g_emb_assert_trap = false;
+    TEST_ASSERT(g_junk_assert_trap == true);
+    g_junk_assert_trap = false;
 }
 
 void test_size()

@@ -6,16 +6,16 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_BB_UART_ATTINYx5_H
-#define EMB_BB_UART_ATTINYx5_H
+#ifndef JUNK_BB_UART_ATTINYx5_H
+#define JUNK_BB_UART_ATTINYx5_H
 
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "embedlib/common/iuart.h"
-#include "embedlib/attinyx5/pin.h"
+#include "junk/common/iuart.h"
+#include "junk/attinyx5/pin.h"
 
-namespace emb {
+namespace junk {
 
 class BitBangUart : public IUart {
 public:
@@ -49,6 +49,6 @@ private:
     Pin* m_tx;
 };
 
-} // namespace emb
+} // namespace junk
 
-#endif /* EMB_BB_UART_ATTINYx5_H */
+#endif /* JUNK_BB_UART_ATTINYx5_H */

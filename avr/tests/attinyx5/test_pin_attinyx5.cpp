@@ -10,9 +10,9 @@
 
 #include "unity.h"
 
-#include "embedlib/attinyx5/pin.h"
+#include "junk/attinyx5/pin.h"
 
-using namespace emb;
+using namespace junk;
 
 int main(int argc, char** argv)
 {

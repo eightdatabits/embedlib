@@ -10,8 +10,8 @@
 #define TLC591x_H
 
 #include <stdint.h>
-#include "embedlib/common/pin.h"
-#include "embedlib/common/spi.h"
+#include "junk/common/pin.h"
+#include "junk/common/spi.h"
 
 typedef struct tlc591x_s
 {

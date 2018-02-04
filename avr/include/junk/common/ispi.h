@@ -6,13 +6,13 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_ISPI_H
-#define EMB_ISPI_H
+#ifndef JUNK_ISPI_H
+#define JUNK_ISPI_H
 
 #include <stdbool.h>
 #include <stdint.h>
 
-namespace emb {
+namespace junk {
 
 class ISpi {
 public:
@@ -27,6 +27,6 @@ public:
                          const size_t num_bytes ) = 0;
 };
 
-} // namespace emb
+} // namespace junk
 
-#endif /* EMB_ISPI_H */
+#endif /* JUNK_ISPI_H */

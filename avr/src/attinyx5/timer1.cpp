@@ -12,9 +12,9 @@
 
 #include <avr/io.h>
 
-#include "embedlib/attinyx5/timer1.h"
+#include "junk/attinyx5/timer1.h"
 
-namespace emb {
+namespace junk {
 
 Timer1::Timer1( Prescaler pre, bool reset_on_match )
     : m_prescaler(pre)
@@ -165,4 +165,4 @@ uint8_t Timer1::getCompare() const
 
 
 
-} // namespace emb
+} // namespace junk

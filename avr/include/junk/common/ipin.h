@@ -6,12 +6,12 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_IPIN_H
-#define EMB_IPIN_H
+#ifndef JUNK_IPIN_H
+#define JUNK_IPIN_H
 
 #include <stdbool.h>
 
-namespace emb {
+namespace junk {
 
 class IPin {
 public:
@@ -28,6 +28,6 @@ public:
     virtual void toggle() = 0;
 };
 
-} // namespace emb
+} // namespace junk
 
-#endif /* EMB_IPIN_H */
+#endif /* JUNK_IPIN_H */

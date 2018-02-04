@@ -38,8 +38,8 @@ $(1)_INCLUDES = $$(COMMON_INCLUDE_DIR) $$(AVR_INCLUDE_DIR) $(4)
 $(1)_INCLUDE_FLAGS = $$(addprefix -I,$$($(1)_INCLUDES))
 
 # Output Files #
-$(1)_LST = $$($(1)_OUTPUT_DIR)/embedlib-$(1).lst
-$(1)_A = $$($(1)_OUTPUT_DIR)/embedlib-$(1).a
+$(1)_LST = $$($(1)_OUTPUT_DIR)/junk-$(1).lst
+$(1)_A = $$($(1)_OUTPUT_DIR)/junk-$(1).a
 
 ### Targets ###
 

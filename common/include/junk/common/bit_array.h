@@ -12,9 +12,9 @@
 #include <cstdint>
 #include <cstring>
 
-#include "embedlib/common/emb_assert.h"
+#include "junk/common/emb_assert.h"
 
-namespace emb {
+namespace junk {
 
 /**
  * @brief Stores an array of bits and provides easy access to individual bits.
@@ -197,7 +197,7 @@ public:
      */
     bool at(size_t index)
     {
-        EMB_ASSERT(index < Bits);
+        JUNK_ASSERT(index < Bits);
         return (*this)[index];
     };
 
@@ -220,6 +220,6 @@ private:
     uint8_t m_bits[kNumBytes] = {0};
 };
 
-} // namespace emb
+} // namespace junk
 
 #endif // BITARRAY_H

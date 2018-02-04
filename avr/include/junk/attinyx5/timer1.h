@@ -6,15 +6,15 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_TIMER1_ATTINYx5_H
-#define EMB_TIMER1_ATTINYx5_H
+#ifndef JUNK_TIMER1_ATTINYx5_H
+#define JUNK_TIMER1_ATTINYx5_H
 
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "embedlib/common/itimer.h"
+#include "junk/common/itimer.h"
 
-namespace emb {
+namespace junk {
 
 class Timer1 : public ITimer {
 public:
@@ -58,6 +58,6 @@ private:
     Prescaler m_prescaler;
 };
 
-} // namespace emb
+} // namespace junk
 
-#endif /* EMB_TIMER1_ATTINYx5_H */
+#endif /* JUNK_TIMER1_ATTINYx5_H */

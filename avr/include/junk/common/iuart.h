@@ -6,12 +6,12 @@
  * @copyright Copyright (c) 2017 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef EMB_IUART_H
-#define EMB_IUART_H
+#ifndef JUNK_IUART_H
+#define JUNK_IUART_H
 
 #include <stdbool.h>
 
-namespace emb {
+namespace junk {
 
 class IUart {
 public:
@@ -27,6 +27,6 @@ public:
                          const uint16_t timeout_ms ) = 0;
 };
 
-} // namespace emb
+} // namespace junk
 
-#endif /* EMB_IUART_H */
+#endif /* JUNK_IUART_H */

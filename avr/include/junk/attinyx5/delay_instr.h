@@ -15,7 +15,7 @@
 extern "C" {
 #endif
 
-extern void emb_delay_instr(uint16_t i);
+extern void junk_delay_instr(uint16_t i);
 
 #ifdef __cplusplus
 }

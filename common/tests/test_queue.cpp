@@ -8,13 +8,13 @@
 
 #include "unity.h"
 
-// Mock EMB_TRAP
-#define EMB_TRAP(f,l) g_emb_assert_trap = true
-bool g_emb_assert_trap = false;
+// Mock JUNK_TRAP
+#define JUNK_TRAP(f,l) g_junk_assert_trap = true
+bool g_junk_assert_trap = false;
 
-#include "embedlib/common/queue.h"
+#include "junk/common/queue.h"
 
-using namespace emb;
+using namespace junk;
 
 void test_empty();
 void test_full();

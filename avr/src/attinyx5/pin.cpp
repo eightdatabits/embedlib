@@ -10,7 +10,7 @@
 #include <stddef.h>
 #include <avr/io.h>
 
-#include "junk/common/emb_assert.h"
+#include "junk/common/junk_assert.h"
 #include "junk/attinyx5/pin.h"
 
 namespace junk {

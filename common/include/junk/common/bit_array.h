@@ -12,7 +12,7 @@
 #include <cstdint>
 #include <cstring>
 
-#include "junk/common/emb_assert.h"
+#include "junk/common/junk_assert.h"
 
 namespace junk {
 

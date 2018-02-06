@@ -32,7 +32,7 @@ BitBangUart::BitBangUart( Baud baud, Pin* rx = NULL, Pin* tx = NULL )
 bool BitBangUart::putChar( const char c )
 {
     m_tx.assert();
-    emb_delay_instr(m_bit_time);
+    junk_delay_instr(m_bit_time);
 }
 
 

@@ -12,17 +12,20 @@ all: build
 # Build all platforms #
 .PHONY: build
 build:
-	@cd avr ; make build
+	@cd hal/avr ; make build
+	@cd util ; make build
 
 # Run all unit tests on all platforms #
 .PHONY: test
 test:
-	@cd avr ; make test
+	@cd hal/avr ; make test
+	@cd util ; make test
 
 # Clean all platforms #
 .PHONY: clean
 clean:
-	@cd avr ; make clean
+	@cd hal/avr ; make clean
+	@cd util ; make clean
 
 # Print the help message #
 .PHONY: help

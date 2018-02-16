@@ -91,6 +91,12 @@ bool Pin::read() const
     return (m_asserted_high == (bool)(PINB & (1<<(m_num))));
 }
 
+/**
+ * @brief Set the pin to the given state (output only).
+ *
+ * @param[in]  asserted
+ *             The new state to set the pin to. `true` is asserted, `false` is deasserted.
+ */
 void Pin::set(bool asserted)
 {
     if (asserted) {

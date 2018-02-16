@@ -20,20 +20,25 @@ class Pin : public IPin {
 public:
     typedef uint8_t PinNum;
 
+    /**
+     * @brief Pull-up/Pull-down options.
+     *
+     * The ATTinyx5 family only provides for pull-up or no pull options.
+     */
     enum PuPd
     {
-        PUPD_NONE     = 0U,
-        PUPD_PULLDOWN = 1U,
-        PUPD_PULLUP   = 2U
+        PUPD_NONE     = 0U, ///< No pull-up on the pin.
+        PUPD_PULLUP   = 1U  ///< Set a pull-up on the pin.
     };
 
     /* Note: There is only one pin bank in the ATTinyx5 family: bank B */
-    Pin( const PinNum num, const bool asserted_high );
+    Pin( const PinNum num, const bool asserted_high = true );
     virtual ~Pin() {};
 
     void setPuPd( const PuPd pupd );
     virtual void setDirection( const Direction dir );
     virtual bool read() const;
+    virtual void set(bool asserted);
     virtual void assert();
     virtual void deassert();
     virtual void toggle();

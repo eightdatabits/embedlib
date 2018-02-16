@@ -92,6 +92,21 @@ bool Pin::read() const
 }
 
 /**
+ * @brief Set the pin to the given state (output only).
+ *
+ * @param[in]  asserted
+ *             The new state to set the pin to. `true` is asserted, `false` is deasserted.
+ */
+void Pin::set(bool asserted)
+{
+    if (asserted) {
+        assert();
+    } else {
+        deassert();
+    }
+}
+
+/**
  * @brief Assert the pin (output only).
  */
 void Pin::assert()

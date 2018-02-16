@@ -24,6 +24,7 @@ public:
 
     virtual void setDirection( const Direction dir ) = 0;
     virtual bool read() const = 0;
+    virtual void set(bool asserted) = 0;
     virtual void assert() = 0;
     virtual void deassert() = 0;
     virtual void toggle() = 0;

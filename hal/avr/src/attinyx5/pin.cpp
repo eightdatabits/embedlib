@@ -91,6 +91,15 @@ bool Pin::read() const
     return (m_asserted_high == (bool)(PINB & (1<<(m_num))));
 }
 
+void Pin::set(bool asserted)
+{
+    if (asserted) {
+        assert();
+    } else {
+        deassert();
+    }
+}
+
 /**
  * @brief Assert the pin (output only).
  */

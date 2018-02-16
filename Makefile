@@ -30,7 +30,7 @@ clean:
 # Print the help message #
 .PHONY: help
 help:
-	@echo "Embedlib build system."
+	@echo "Junk build system."
 	@echo "For more build system information see the readme.md"
 	@echo "Make targets:"
 	@echo "    all        Invokes `build`."

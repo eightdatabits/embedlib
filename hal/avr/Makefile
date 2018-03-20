@@ -40,19 +40,20 @@ THIRDPARTY_DIR = $(JUNK_ROOT)/thirdparty
 
 # Build Flags #
 AVR_LIB_CFLAGS = -Wall -Werror -ggdb
-AVR_LIB_CPPFLAGS = -Wall -Werror -ggdb
+AVR_LIB_CPPFLAGS = -std=c++11 -Wall -Werror -ggdb
 AVR_LIB_ARFLAGS =
 AVR_LIB_OBJDUMPFLAGS =
 AVR_UT_CFLAGS = -Wall -Werror -ggdb
-AVR_UT_CPPFLAGS = -Wall -Werror -ggdb
+AVR_UT_CPPFLAGS = -std=c++11 -Wall -Werror -ggdb
 AVR_UT_LDFLAGS =
 AVR_UT_LDLIBS =
 AVR_FT_CFLAGS = -Wall -Werror
-AVR_FT_CPPFLAGS = -Wall -Werror
+AVR_FT_CPPFLAGS = -std=c++11 -Wall -Werror
 AVR_FT_LDFLAGS =
 AVR_FT_LDLIBS =
 AVR_FT_OBJCOPYFLAGS = -j .text -j .data -O ihex
-AVR_FT_PROGFLAGS = -c avrispmkII -P usb
+AVR_FT_OBJDUMPFLAGS = -h -S
+AVR_FT_PROGFLAGS = -c atmelice_isp -P usb
 
 
 ### Application Configuration ###
@@ -89,7 +90,7 @@ help:
 	@echo "                                            the given AVR processor."
 	@echo ""
 	@echo "Available library targets:"
-	@echo $(foreach target,$(ALL_LIBS), "    $(target)_build\n    $(target)_clean\n")
+	@echo $(foreach target,$(ALL_LIBS),"    $(target)_build\n    $(target)_clean\n")
 	@echo ""
 	@echo "Unit test targets:"
 	@echo "    ut_<family>_<unit>_[build|run|clean]    Builds/runs the unit test for the given"
@@ -97,7 +98,7 @@ help:
 	@echo "                                            processors."
 	@echo ""
 	@echo "Available unit test targets:"
-	@echo $(foreach target,$(ALL_UTS), "    $(target)_build\n    $(target)_run\n    $(target)_clean\n")
+	@echo $(foreach target,$(ALL_UTS),"    $(target)_build\n    $(target)_run\n    $(target)_clean\n")
 	@echo ""
 	@echo "Functional test targets:"
 	@echo "    ft_<family>_<unit>_[build|run|clean]    Builds/flashes the functional test for the"
@@ -106,7 +107,7 @@ help:
 	@echo "                                            the application via an AVR-ISP mkII."
 	@echo ""
 	@echo "Available functional test targets:"
-	@echo $(foreach target,$(ALL_FTS), "    $(target)_build\n    $(target)_run\n    $(target)_clean\n")
+	@echo $(foreach target,$(ALL_FTS),"    $(target)_build\n    $(target)_run\n    $(target)_clean\n")
 	@echo ""
 
 # Output Directory #
@@ -161,22 +162,45 @@ include make/functest.mk
 FT_PIN_ATTINY85_TARGET := pin
 FT_PIN_ATTINY85_FAMILY := attinyx5
 FT_PIN_ATTINY85_MCU := attiny85
-FT_PIN_ATTINY85_SOURCES := $(AVR_TESTS_DIR)/attinyx5/functest_pin_attinyx5.cpp \
-                        $(AVR_SOURCE_DIR)/attinyx5/pin.cpp \
-                        $(AVR_SOURCE_DIR)/attinyx5/delay_instr.S
+FT_PIN_ATTINY85_SOURCES := $(AVR_TESTS_DIR)/attinyx5/functest_pin.cpp \
+                           $(AVR_SOURCE_DIR)/attinyx5/pin.cpp
 FT_PIN_ATTINY85_INCLUDES := $(AVR_INCLUDE_DIR) \
-                         $(UTIL_INCLUDE_DIR)
-FT_PIN_ATTINY85_CFLAGS := -g -Os -mmcu=$(FT_PIN_ATTINY85_MCU)
-FT_PIN_ATTINY85_CPPFLAGS := -g -Os -mmcu=$(FT_PIN_ATTINY85_MCU)
+                            $(UTIL_INCLUDE_DIR)
+FT_PIN_ATTINY85_CFLAGS := -g -Os -mmcu=$(FT_PIN_ATTINY85_MCU) -DFOSC=1000000
+FT_PIN_ATTINY85_CPPFLAGS := -g -Os -mmcu=$(FT_PIN_ATTINY85_MCU) -DFOSC=1000000
 FT_PIN_ATTINY85_LDFLAGS := -g -mmcu=$(FT_PIN_ATTINY85_MCU) -Wl,-T,$(AVR_LINKER_DIR)/attiny85.x
 FT_PIN_ATTINY85_LDLIBS :=
 FT_PIN_ATTINY85_OBJCOPY_FLAGS :=
+FT_PIN_ATTINY85_OBJDUMP_FLAGS :=
 FT_PIN_ATTINY85_LFUSE := 0xE2
 FT_PIN_ATTINY85_HFUSE := 0xDF
 FT_PIN_ATTINY85_EFUSE := 0xFF
 FT_PIN_ATTINY85_PROG_FLAGS := -p t85 -U lfuse:w:$(FT_PIN_ATTINY85_LFUSE):m -U hfuse:w:$(FT_PIN_ATTINY85_HFUSE):m -U efuse:w:$(FT_PIN_ATTINY85_EFUSE):m
 
-$(eval $(call FT_tmpl,$(FT_PIN_ATTINY85_TARGET),$(FT_PIN_ATTINY85_FAMILY),$(FT_PIN_ATTINY85_MCU),$(FT_PIN_ATTINY85_SOURCES),$(FT_PIN_ATTINY85_INCLUDES),$(FT_PIN_ATTINY85_CFLAGS),$(FT_PIN_ATTINY85_CPPFLAGS),$(FT_PIN_ATTINY85_LDFLAGS),$(FT_PIN_ATTINY85_LDLIBS),$(FT_PIN_ATTINY85_OBJCOPY_FLAGS),$(FT_PIN_ATTINY85_PROG_FLAGS)))
+$(eval $(call FT_tmpl,$(FT_PIN_ATTINY85_TARGET),$(FT_PIN_ATTINY85_FAMILY),$(FT_PIN_ATTINY85_MCU),$(FT_PIN_ATTINY85_SOURCES),$(FT_PIN_ATTINY85_INCLUDES),$(FT_PIN_ATTINY85_CFLAGS),$(FT_PIN_ATTINY85_CPPFLAGS),$(FT_PIN_ATTINY85_LDFLAGS),$(FT_PIN_ATTINY85_LDLIBS),$(FT_PIN_ATTINY85_OBJCOPY_FLAGS),$(FT_PIN_ATTINY85_OBJDUMP_FLAGS),$(FT_PIN_ATTINY85_PROG_FLAGS)))
+
+# ATTiny85 SPI Driver #
+FT_SPI_ATTINY85_TARGET := spi
+FT_SPI_ATTINY85_FAMILY := attinyx5
+FT_SPI_ATTINY85_MCU := attiny85
+FT_SPI_ATTINY85_SOURCES := $(AVR_TESTS_DIR)/attinyx5/functest_spi.cpp \
+                           $(AVR_SOURCE_DIR)/attinyx5/spi.cpp \
+                           $(AVR_SOURCE_DIR)/attinyx5/pin.cpp \
+                           $(AVR_SOURCE_DIR)/attinyx5/delay.S
+FT_SPI_ATTINY85_INCLUDES := $(AVR_INCLUDE_DIR) \
+                            $(UTIL_INCLUDE_DIR)
+FT_SPI_ATTINY85_CFLAGS := -g -Os -mmcu=$(FT_SPI_ATTINY85_MCU) -DFOSC=1000000
+FT_SPI_ATTINY85_CPPFLAGS := -g -Os -mmcu=$(FT_SPI_ATTINY85_MCU) -DFOSC=1000000
+FT_SPI_ATTINY85_LDFLAGS := -g -mmcu=$(FT_SPI_ATTINY85_MCU) -Wl,-T,$(AVR_LINKER_DIR)/attiny85.x
+FT_SPI_ATTINY85_LDLIBS :=
+FT_SPI_ATTINY85_OBJCOPY_FLAGS :=
+FT_SPI_ATTINY85_OBJDUMP_FLAGS :=
+FT_SPI_ATTINY85_LFUSE := 0xE2
+FT_SPI_ATTINY85_HFUSE := 0xDF
+FT_SPI_ATTINY85_EFUSE := 0xFF
+FT_SPI_ATTINY85_PROG_FLAGS := -p t85 -U lfuse:w:$(FT_SPI_ATTINY85_LFUSE):m -U hfuse:w:$(FT_SPI_ATTINY85_HFUSE):m -U efuse:w:$(FT_SPI_ATTINY85_EFUSE):m
+
+$(eval $(call FT_tmpl,$(FT_SPI_ATTINY85_TARGET),$(FT_SPI_ATTINY85_FAMILY),$(FT_SPI_ATTINY85_MCU),$(FT_SPI_ATTINY85_SOURCES),$(FT_SPI_ATTINY85_INCLUDES),$(FT_SPI_ATTINY85_CFLAGS),$(FT_SPI_ATTINY85_CPPFLAGS),$(FT_SPI_ATTINY85_LDFLAGS),$(FT_SPI_ATTINY85_LDLIBS),$(FT_SPI_ATTINY85_OBJCOPY_FLAGS),$(FT_SPI_ATTINY85_OBJDUMP_FLAGS),$(FT_SPI_ATTINY85_PROG_FLAGS)))
 
 
 ## These must be at the bottom of the file ##

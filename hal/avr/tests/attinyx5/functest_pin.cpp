@@ -1,5 +1,5 @@
 /**
- * @file      test_pin_attinyx5.c
+ * @file      functest_pin.cpp
  * @brief     This file contains tests for ATtinyx5 series pin driver.
  * @author    Liam Bucci <liam.bucci@gmail.com>
  * @date      2017-09-22
@@ -8,8 +8,8 @@
 
 #include <stdint.h>
 
+#include "junk/hal/attinyx5/delay.h"
 #include "junk/hal/attinyx5/pin.h"
-#include "junk/hal/attinyx5/delay_instr.h"
 
 using namespace junk::hal;
 
@@ -53,10 +53,10 @@ void functest()
     Pin pb1(1, true);
     Pin pb2(2, true);
     Pin pb4(4, false);
-    pb0.setDirection(Pin::DIRECTION_OUT);
-    pb1.setDirection(Pin::DIRECTION_IN);
-    pb2.setDirection(Pin::DIRECTION_OUT);
-    pb4.setDirection(Pin::DIRECTION_OUT);
+    pb0.setDirection(Pin::Direction::OUT);
+    pb1.setDirection(Pin::Direction::IN);
+    pb2.setDirection(Pin::Direction::OUT);
+    pb4.setDirection(Pin::Direction::OUT);
 
     while(true) {
         if (pb1.read()) {

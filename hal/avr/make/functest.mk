@@ -12,7 +12,8 @@
 # 8 - Linker flags
 # 9 - Linker libs
 # 10 - Objcpy flags
-# 11 - Programming flags
+# 11 - Objdump flags
+# 12 - Programming flags
 #
 #
 # Output Targets:
@@ -34,7 +35,8 @@ FT_$(2)_$(1)_CPPFLAGS = $$(AVR_FT_CPPFLAGS) $(7)
 FT_$(2)_$(1)_LDFLAGS = $$(AVR_FT_LDFLAGS) -Wl,-Map,$$(FT_$(2)_$(1)_MAP) $(8)
 FT_$(2)_$(1)_LDLIBS = $$(AVR_FT_LDLIBS) $(9)
 FT_$(2)_$(1)_OBJCOPY_FLAGS = $$(AVR_FT_OBJCOPYFLAGS) $(10)
-FT_$(2)_$(1)_PROG_FLAGS = $$(AVR_FT_PROGFLAGS) $(11)
+FT_$(2)_$(1)_OBJDUMP_FLAGS = $$(AVR_FT_OBJDUMPFLAGS) $(11)
+FT_$(2)_$(1)_PROG_FLAGS = $$(AVR_FT_PROGFLAGS) $(12)
 
 # Source Files #
 FT_$(2)_$(1)_SOURCES = $(4) $$(AVR_COMMON_DIR)/stdcpp.cpp
@@ -48,6 +50,7 @@ FT_$(2)_$(1)_INCLUDE_FLAGS = $$(addprefix -I,$$(FT_$(2)_$(1)_INCLUDES))
 FT_$(2)_$(1)_ELF = $$(FT_$(2)_$(1)_BUILD_DIR)/$(1).elf
 FT_$(2)_$(1)_HEX = $$(FT_$(2)_$(1)_OUTPUT_DIR)/$(1).hex
 FT_$(2)_$(1)_MAP = $$(FT_$(2)_$(1)_OUTPUT_DIR)/$(1).map
+FT_$(2)_$(1)_LSS = $$(FT_$(2)_$(1)_OUTPUT_DIR)/$(1).lss
 
 # Set VPATH #
 VPATH += $(THIRDPARTY_DIR)/unity/src
@@ -62,7 +65,7 @@ ft_$(2)_$(1)_build: $$(FT_$(2)_$(1)_HEX)
 
 # Flash Rule #
 .PHONY: ft_$(2)_$(1)_run
-ft_$(2)_$(1)_run: FT_$(2)_$(1)_build
+ft_$(2)_$(1)_run: ft_$(2)_$(1)_build
 	$$(AVR_PROG) $$(FT_$(2)_$(1)_PROG_FLAGS) -v -U flash:w:$$(FT_$(2)_$(1)_HEX)
 
 # Clean Rule #
@@ -89,21 +92,21 @@ $$(FT_$(2)_$(1)_BUILD_DIR)/%.o: $$(COMMON_SOURCE_DIR)/%.c | $$(FT_$(2)_$(1)_BUIL
 	$$(AVR_CC) $$(FT_$(2)_$(1)_CFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(FT_$(2)_$(1)_BUILD_DIR)/%.o: $$(COMMON_SOURCE_DIR)/%.cpp | $$(FT_$(2)_$(1)_BUILD_DIR)
-	$$(AVR_CXX) $$(FT_$(2)_$(1)_CFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(AVR_CXX) $$(FT_$(2)_$(1)_CPPFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 # Common AVR Sources #
 $$(FT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_COMMON_DIR)/%.c | $$(FT_$(2)_$(1)_BUILD_DIR)
 	$$(AVR_CC) $$(FT_$(2)_$(1)_CFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(FT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_COMMON_DIR)/%.cpp | $$(FT_$(2)_$(1)_BUILD_DIR)
-	$$(AVR_CXX) $$(FT_$(2)_$(1)_CFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(AVR_CXX) $$(FT_$(2)_$(1)_CPPFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 # Family Specific Sources #
 $$(FT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_SOURCE_DIR)/$(2)/%.c | $$(FT_$(2)_$(1)_BUILD_DIR)
 	$$(AVR_CC) $$(FT_$(2)_$(1)_CFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(FT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_SOURCE_DIR)/$(2)/%.cpp | $$(FT_$(2)_$(1)_BUILD_DIR)
-	$$(AVR_CXX) $$(FT_$(2)_$(1)_CFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(AVR_CXX) $$(FT_$(2)_$(1)_CPPFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(FT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_SOURCE_DIR)/$(2)/%.S | $$(FT_$(2)_$(1)_BUILD_DIR)
 	$$(AVR_CC) $$(FT_$(2)_$(1)_CFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
@@ -113,7 +116,7 @@ $$(FT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_MOCKS_DIR)/$(2)/%.c | $$(FT_$(2)_$(1)_BUI
 	$$(AVR_CC) $$(FT_$(2)_$(1)_CFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(FT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_MOCKS_DIR)/$(2)/%.cpp | $$(FT_$(2)_$(1)_BUILD_DIR)
-	$$(AVR_CXX) $$(FT_$(2)_$(1)_CFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(AVR_CXX) $$(FT_$(2)_$(1)_CPPFLAGS) $$(FT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 # Family Specific Stubs #
 $$(FT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_STUBS_DIR)/$(2)/%.c | $$(FT_$(2)_$(1)_BUILD_DIR)
@@ -143,4 +146,5 @@ $$(FT_$(2)_$(1)_ELF): $$(FT_$(2)_$(1)_OBJECTS) | $$(FT_$(2)_$(1)_OUTPUT_DIR)
 # Hex Target #
 $$(FT_$(2)_$(1)_HEX): $$(FT_$(2)_$(1)_ELF)
 	$$(AVR_OBJCOPY) $$(FT_$(2)_$(1)_OBJCOPY_FLAGS) $$(FT_$(2)_$(1)_ELF) $$@
+	$$(AVR_OBJDUMP) $$(FT_$(2)_$(1)_OBJDUMP_FLAGS) $$(FT_$(2)_$(1)_ELF) > $$(FT_$(2)_$(1)_LSS)
 endef

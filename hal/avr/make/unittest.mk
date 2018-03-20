@@ -81,28 +81,28 @@ $$(UT_$(2)_$(1)_BUILD_DIR)/%.o: $$(COMMON_SOURCE_DIR)/%.c | $$(UT_$(2)_$(1)_BUIL
 	$$(CC) $$(UT_$(2)_$(1)_CFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(UT_$(2)_$(1)_BUILD_DIR)/%.o: $$(COMMON_SOURCE_DIR)/%.cpp | $$(UT_$(2)_$(1)_BUILD_DIR)
-	$$(CXX) $$(UT_$(2)_$(1)_CFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(CXX) $$(UT_$(2)_$(1)_CPPFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 # Common AVR Sources #
 $$(UT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_COMMON_DIR)/%.c | $$(UT_$(2)_$(1)_BUILD_DIR)
 	$$(CC) $$(UT_$(2)_$(1)_CFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(UT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_COMMON_DIR)/%.cpp | $$(UT_$(2)_$(1)_BUILD_DIR)
-	$$(CXX) $$(UT_$(2)_$(1)_CFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(CXX) $$(UT_$(2)_$(1)_CPPFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 # Family Specific Sources #
 $$(UT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_SOURCE_DIR)/$(2)/%.c | $$(UT_$(2)_$(1)_BUILD_DIR)
 	$$(CC) $$(UT_$(2)_$(1)_CFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(UT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_SOURCE_DIR)/$(2)/%.cpp | $$(UT_$(2)_$(1)_BUILD_DIR)
-	$$(CXX) $$(UT_$(2)_$(1)_CFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(CXX) $$(UT_$(2)_$(1)_CPPFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 # Family Specific Mocks #
 $$(UT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_MOCKS_DIR)/$(2)/%.c | $$(UT_$(2)_$(1)_BUILD_DIR)
 	$$(CC) $$(UT_$(2)_$(1)_CFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(UT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_MOCKS_DIR)/$(2)/%.cpp | $$(UT_$(2)_$(1)_BUILD_DIR)
-	$$(CXX) $$(UT_$(2)_$(1)_CFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(CXX) $$(UT_$(2)_$(1)_CPPFLAGS) $$(UT_$(2)_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 # Family Specific Stubs #
 $$(UT_$(2)_$(1)_BUILD_DIR)/%.o: $$(AVR_STUBS_DIR)/$(2)/%.c | $$(UT_$(2)_$(1)_BUILD_DIR)

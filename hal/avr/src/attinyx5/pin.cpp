@@ -29,7 +29,7 @@ namespace hal {
  *             True if the pin is asserted high.
  * @return [description]
  */
-Pin::Pin( const PinNum num, const bool asserted_high )
+Pin::Pin(const PinNum num, const bool asserted_high)
     : m_num(num), m_asserted_high(asserted_high)
 {
     JUNK_ASSERT(m_num < 8);
@@ -44,11 +44,11 @@ Pin::Pin( const PinNum num, const bool asserted_high )
  */
 void Pin::setPuPd( const PuPd pupd )
 {
-    if( pupd == PUPD_NONE )
+    if( pupd == PuPd::NONE )
     {
         PORTB &= ~(1<<(m_num));
     }
-    else if( pupd == PUPD_PULLUP )
+    else if( pupd == PuPd::PULLUP )
     {
         PORTB |= (1<<(m_num));
     }
@@ -69,11 +69,11 @@ void Pin::setPuPd( const PuPd pupd )
  */
 void Pin::setDirection( const Direction dir )
 {
-    if( dir == DIRECTION_IN )
+    if( dir == Direction::IN )
     {
         DDRB &= ~(1<<(m_num));
     }
-    else if( dir == DIRECTION_OUT )
+    else if( dir == Direction::OUT )
     {
         DDRB |= (1<<(m_num));
     }

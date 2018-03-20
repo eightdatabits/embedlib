@@ -16,10 +16,10 @@ namespace hal {
 
 class IPin {
 public:
-    enum Direction
+    enum class Direction
     {
-        DIRECTION_IN  = 0U,
-        DIRECTION_OUT = 1U
+        IN  = 0U,
+        OUT = 1U
     };
 
     virtual void setDirection( const Direction dir ) = 0;

@@ -73,28 +73,28 @@ $$(LIB_$(1)_BUILD_DIR)/%.o: $$(COMMON_SOURCE_DIR)/%.c | $$(LIB_$(1)_BUILD_DIR)
 	$$(AVR_CC) $$(LIB_$(1)_CFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(LIB_$(1)_BUILD_DIR)/%.o: $$(COMMON_SOURCE_DIR)/%.cpp | $$(LIB_$(1)_BUILD_DIR)
-	$$(AVR_CC) $$(LIB_$(1)_CFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(AVR_CC) $$(LIB_$(1)_CPPFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 # Common AVR Sources #
 $$(LIB_$(1)_BUILD_DIR)/%.o: $$(AVR_COMMON_DIR)/%.c | $$(LIB_$(1)_BUILD_DIR)
 	$$(AVR_CC) $$(LIB_$(1)_CFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(LIB_$(1)_BUILD_DIR)/%.o: $$(AVR_COMMON_DIR)/%.cpp | $$(LIB_$(1)_BUILD_DIR)
-	$$(AVR_CC) $$(LIB_$(1)_CFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(AVR_CC) $$(LIB_$(1)_CPPFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 # Family Specific Sources #
 $$(LIB_$(1)_BUILD_DIR)/%.o: $$(AVR_SOURCE_DIR)/$(2)/%.c | $$(LIB_$(1)_BUILD_DIR)
 	$$(AVR_CC) $$(LIB_$(1)_CFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(LIB_$(1)_BUILD_DIR)/%.o: $$(AVR_SOURCE_DIR)/$(2)/%.cpp | $$(LIB_$(1)_BUILD_DIR)
-	$$(AVR_CC) $$(LIB_$(1)_CFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(AVR_CC) $$(LIB_$(1)_CPPFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 # Family Specific Mocks #
 $$(LIB_$(1)_BUILD_DIR)/%.o: $$(AVR_MOCKS_DIR)/$(2)/%.c | $$(LIB_$(1)_BUILD_DIR)
 	$$(AVR_CC) $$(LIB_$(1)_CFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 $$(LIB_$(1)_BUILD_DIR)/%.o: $$(AVR_MOCKS_DIR)/$(2)/%.cpp | $$(LIB_$(1)_BUILD_DIR)
-	$$(AVR_CC) $$(LIB_$(1)_CFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
+	$$(AVR_CC) $$(LIB_$(1)_CPPFLAGS) $$(LIB_$(1)_INCLUDE_FLAGS) -MD -c $$< -o $$@
 
 # Family Specific Stubs #
 $$(LIB_$(1)_BUILD_DIR)/%.o: $$(AVR_STUBS_DIR)/$(2)/%.c | $$(LIB_$(1)_BUILD_DIR)

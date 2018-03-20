@@ -25,23 +25,23 @@ public:
      *
      * The ATTinyx5 family only provides for pull-up or no pull options.
      */
-    enum PuPd
+    enum class PuPd
     {
-        PUPD_NONE     = 0U, ///< No pull-up on the pin.
-        PUPD_PULLUP   = 1U  ///< Set a pull-up on the pin.
+        NONE     = 0U, ///< No pull-up on the pin.
+        PULLUP   = 1U  ///< Set a pull-up on the pin.
     };
 
     /* Note: There is only one pin bank in the ATTinyx5 family: bank B */
-    Pin( const PinNum num, const bool asserted_high = true );
-    virtual ~Pin() {};
+    Pin(const PinNum num, const bool asserted_high = true);
+    virtual ~Pin() = default;
 
     void setPuPd( const PuPd pupd );
-    virtual void setDirection( const Direction dir );
-    virtual bool read() const;
-    virtual void set(bool asserted);
-    virtual void assert();
-    virtual void deassert();
-    virtual void toggle();
+    void setDirection( const Direction dir ) override final;
+    bool read() const override final;
+    void set(bool asserted) override final;
+    void assert() override final;
+    void deassert() override final;
+    void toggle() override final;
 
 private:
     PinNum m_num;

@@ -191,7 +191,7 @@ void test_fuzzy_search()
     srand(seed);
 
     const size_t samples = 100000;
-    for (uint32_t s = 8; s <= (1<<20); s *= 2) {
+    for (uint32_t s = 8; s <= (1<<16); s *= 2) {
         const size_t kArraySize = s;
         std::cout << "Array size: " << kArraySize << std::endl;
         int *array = new int[kArraySize];
@@ -256,6 +256,6 @@ void test_fuzzy_search()
         std::cout << "linearSearch avg: " << sum3 / samples << "ns" << std::endl;
         std::cout << std::endl;
 
-        delete array;
+        delete[] array;
     }
 }

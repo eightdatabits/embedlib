@@ -6,8 +6,8 @@
  * @copyright Copyright (c) 2018 Liam Bucci. See included LICENSE file.
  */
 
-#ifndef SEARCH_H
-#define SEARCH_H
+#ifndef BINARY_SEARCH_H
+#define BINARY_SEARCH_H
 
 #include <cstddef>
 
@@ -99,9 +99,9 @@ T* binarySearch(T (&array)[N], const T& match)
  * Uses a provided predicate instead of `operator <` and `operator ==` when comparing items. Compare
  * predicate must have a signature similar to: `int comp(const T& a, const T& b)`.
  * Where the return values follow:
- * * `0` if `a == b`
- * * A negative number if `a < b`
- * * A positive number if `a > b`.
+ * - `0` if `a == b`
+ * - A negative number if `a < b`
+ * - A positive number if `a > b`.
  *
  * @tparam     T
  *             The type stored in the array.
@@ -182,4 +182,4 @@ T* binarySearch(T (&array)[N], const T& match, Compare comp)
 } // namespace algorithms
 } // namespace junk
 
-#endif // SEARCH_H
+#endif // BINARY_SEARCH_H

@@ -1,16 +1,12 @@
 /**
- * @file      test_search.cpp
- * @brief     This file contains tests for Search.
+ * @file      test_binary_search.cpp
+ * @brief     This file contains tests for binarySearch.
  * @author    Liam Bucci <liam.bucci@gmail.com>
  * @date      2018-04-21
  * @copyright Copyright (c) 2018 Liam Bucci. See included LICENSE file.
  */
 
 #include "unity.h"
-
-// Mock JUNK_TRAP
-#define JUNK_TRAP(f,l) g_junk_assert_trap = true
-bool g_junk_assert_trap = false;
 
 #include "junk/algorithms/binary_search.h"
 

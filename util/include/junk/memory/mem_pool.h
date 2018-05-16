@@ -36,7 +36,7 @@ namespace junk {
  *         The alignment of each bucket. Defaults to alignment of size_t.
  */
 template <size_t BucketSize, size_t NumBuckets, size_t BucketAlign = BucketSize>
-class MemPool final : public IAllocator
+class MemPool : public IAllocator
 {
 public:
     /**
@@ -89,12 +89,8 @@ public:
      */
     void deallocate(void* mem)
     {
-        if (mem == nullptr) {
-            return;
-        }
-
         // Check that this is a "valid" bucket
-        if ((mem >= &m_buckets[0]) && (mem <= &m_buckets[NumBuckets]) && ((((uintptr_t)mem - (uintptr_t)&m_buckets[0]) % BucketSize) == 0)) {
+        if (isValid(mem)) {
             m_alloc_queue.push(mem);
         }
     };
@@ -118,6 +114,16 @@ public:
     {
         return NumBuckets - m_alloc_queue.size();
     };
+
+protected:
+    /// Validates a pointer as a bucket
+    constexpr bool isValid(void* mem)
+    {
+        return (mem != nullptr) \
+               && (mem >= &m_buckets[0]) \
+               && (mem <= &m_buckets[NumBuckets]) \
+               && ((((uintptr_t)mem - (uintptr_t)&m_buckets[0]) % BucketSize) == 0);
+    }
 
 private:
     /// The internal helper object for creating buckets of the right size and alignment.

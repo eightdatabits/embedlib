@@ -1,0 +1,4 @@
+-Ihal/avr/include
+-Ihal/common/include
+-Iutil/include
+-Ithirdparty/unity/src

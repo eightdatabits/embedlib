@@ -25,10 +25,10 @@ UT_$(2)_$(1)_BUILD_DIR = $$(AVR_BUILD_DIR)/ut/$(2)/$(1)
 UT_$(2)_$(1)_OUTPUT_DIR = $$(AVR_OUTPUT_DIR)/ut/$(2)/$(1)
 
 # Build Flags #
-UT_$(2)_$(1)_CFLAGS = $$(AVR_CFLAGS) $(5)
-UT_$(2)_$(1)_CPPFLAGS = $$(AVR_CPPFLAGS) $(6)
-UT_$(2)_$(1)_LDFLAGS = $$(AVR_LDFLAGS) $(7)
-UT_$(2)_$(1)_LDLIBS = $$(AVR_LDLIBS) $(8)
+UT_$(2)_$(1)_CFLAGS = $$(AVR_UT_CFLAGS) $(5)
+UT_$(2)_$(1)_CPPFLAGS = $$(AVR_UT_CPPFLAGS) $(6)
+UT_$(2)_$(1)_LDFLAGS = $$(AVR_UT_LDFLAGS) $(7)
+UT_$(2)_$(1)_LDLIBS = $$(AVR_UT_LDLIBS) $(8)
 
 # Source Files #
 UT_$(2)_$(1)_SOURCES = $(3)

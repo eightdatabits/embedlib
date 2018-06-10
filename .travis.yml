@@ -1,0 +1,8 @@
+language: cpp
+
+## Use default install stage
+# install:
+
+script:
+  - make
+  - make test

@@ -5,10 +5,6 @@
 
 ### Global Configuration ###
 
-# Build Commands #
-CC = gcc
-CXX = g++
-
 # Shell Commands #
 CP    = cp -fr
 MKDIR = mkdir -p

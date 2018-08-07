@@ -5,7 +5,7 @@
 
 ### Global Configuration ###
 
-# Build Commands #
+# AVR Build Commands #
 AVR_CC = avr-gcc
 AVR_CXX = avr-g++
 AVR_AR = avr-ar
